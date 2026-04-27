@@ -8,14 +8,15 @@ import { sessionService } from '../../services/sessionService';
 vi.mock('../../services/agendaService');
 vi.mock('../../services/sessionService');
 
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
+  return {
+    ...actual,
+    useParams: () => ({ id: '1' }),
+  };
+});
+
 const renderWithRouter = (component: React.ReactElement) => {
-  vi.doMock('react-router-dom', async () => {
-    const actual = await vi.importActual('react-router-dom');
-    return {
-      ...actual,
-      useParams: () => ({ id: '1' }),
-    };
-  });
   return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
@@ -35,7 +36,7 @@ describe('VotingPage', () => {
       id: 1,
       agendaId: 1,
       startTime: '2026-04-27T10:00:00',
-      endTime: '2026-04-27T11:00:00',
+      endTime: '2026-04-28T11:00:00', // Future date
       isActive: true,
     });
     vi.spyOn(agendaService, 'getById').mockResolvedValue({
@@ -48,7 +49,7 @@ describe('VotingPage', () => {
     renderWithRouter(<VotingPage />);
 
     await waitFor(() => {
-      expect(screen.getByText('Pauta Teste')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Pauta Teste' })).toBeInTheDocument();
     });
   });
 
@@ -57,7 +58,7 @@ describe('VotingPage', () => {
       id: 1,
       agendaId: 1,
       startTime: '2026-04-27T10:00:00',
-      endTime: '2026-04-27T11:00:00',
+      endTime: '2026-04-28T11:00:00', // Future date
       isActive: true,
     });
     vi.spyOn(agendaService, 'getById').mockResolvedValue({

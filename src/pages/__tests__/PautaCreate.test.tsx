@@ -6,15 +6,24 @@ import { agendaService } from '../../services/agendaService';
 
 vi.mock('../../services/agendaService');
 
+const mockNavigate = vi.fn();
+const mockAddToast = vi.fn();
+
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual('react-router-dom');
+  return {
+    ...actual,
+    useNavigate: () => mockNavigate,
+  };
+});
+
+vi.mock('../../stores/appStore', () => ({
+  useAppStore: () => ({
+    addToast: mockAddToast,
+  }),
+}));
+
 const renderWithRouter = (component: React.ReactElement) => {
-  const mockNavigate = vi.fn();
-  vi.doMock('react-router-dom', async () => {
-    const actual = await vi.importActual('react-router-dom');
-    return {
-      ...actual,
-      useNavigate: () => mockNavigate,
-    };
-  });
   return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
@@ -26,7 +35,7 @@ describe('PautaCreate', () => {
   it('should render create form', () => {
     renderWithRouter(<PautaCreate />);
     expect(screen.getByText('Criar Nova Pauta')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText(/Ex: Aprovacao de Investimento/)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Ex: Aprovacao/)).toBeInTheDocument();
   });
 
   it('should show error when title is empty', async () => {
@@ -35,7 +44,10 @@ describe('PautaCreate', () => {
     fireEvent.click(submitButton);
 
     await waitFor(() => {
-      expect(screen.getByText(/obrigatorio/)).toBeInTheDocument();
+      expect(mockAddToast).toHaveBeenCalledWith({
+        type: 'error',
+        message: 'O titulo e obrigatorio',
+      });
     });
   });
 

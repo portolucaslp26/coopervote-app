@@ -10,14 +10,15 @@ vi.mock('../../services/agendaService');
 vi.mock('../../services/sessionService');
 vi.mock('../../services/voteService');
 
+vi.mock('react-router-dom', async () => {
+  const actual = await vi.importActual<typeof import('react-router-dom')>('react-router-dom');
+  return {
+    ...actual,
+    useParams: () => ({ id: '1' }),
+  };
+});
+
 const renderWithRouter = (component: React.ReactElement) => {
-  vi.doMock('react-router-dom', async () => {
-    const actual = await vi.importActual('react-router-dom');
-    return {
-      ...actual,
-      useParams: () => ({ id: '1' }),
-    };
-  });
   return render(<BrowserRouter>{component}</BrowserRouter>);
 };
 
@@ -58,7 +59,7 @@ describe('Results', () => {
     renderWithRouter(<Results />);
 
     await waitFor(() => {
-      expect(screen.getByText('Pauta Teste')).toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Pauta Teste' })).toBeInTheDocument();
       expect(screen.getByText('Aprovado')).toBeInTheDocument();
       expect(screen.getByText('Veredito Final')).toBeInTheDocument();
     });

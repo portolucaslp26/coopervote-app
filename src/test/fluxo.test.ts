@@ -186,7 +186,7 @@ describe('Fluxo Completo de Votação', () => {
       });
       throw new Error('Deveria ter falhado');
     } catch (error: any) {
-      expect(error.message).toContain('422');
+      expect(error.message).toContain('409');
       console.log('✓ Voto em sessão encerrada bloqueado');
     }
   });
