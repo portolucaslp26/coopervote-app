@@ -183,29 +183,45 @@ export function Results() {
                 </div>
               </div>
               <div className="flex-1 p-8 flex flex-col items-center justify-center min-h-[300px]">
-                {result.totalVotes > 0 ? (
-                  <>
-                    <div className="relative w-full max-w-[250px] aspect-square">
-                      <svg viewBox="0 0 100 100" className="w-full h-full">
+                <div className="relative w-full max-w-[250px] aspect-square">
+                  <svg viewBox="0 0 100 100" className="w-full h-full">
+                    {result.totalVotes === 0 ? (
+                      <circle
+                        cx="50" cy="50" r="40"
+                        fill="transparent"
+                        stroke="#0677F9"
+                        strokeWidth="20"
+                      />
+                    ) : (
+                      <>
                         <circle
-                          cx="50" cy="50" r="40" 
-                          fill="transparent" 
-                          stroke="#22C55E" 
+                          cx="50" cy="50" r="40"
+                          fill="transparent"
+                          stroke="#22C55E"
                           strokeWidth="20"
                           strokeDasharray={`${(result.yesVotes / result.totalVotes) * 251.2} 251.2`}
                           transform="rotate(-90 50 50)"
                         />
-                        <circle 
-                          cx="50" cy="50" r="40" 
-                          fill="transparent" 
-                          stroke="#D92626" 
+                        <circle
+                          cx="50" cy="50" r="40"
+                          fill="transparent"
+                          stroke="#D92626"
                           strokeWidth="20"
                           strokeDasharray={`${(result.noVotes / result.totalVotes) * 251.2} 251.2`}
                           strokeDashoffset={`-${(result.yesVotes / result.totalVotes) * 251.2}`}
                           transform="rotate(-90 50 50)"
                         />
-                      </svg>
+                      </>
+                    )}
+                  </svg>
+                  {result.totalVotes === 0 && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="text-[#0677F9] text-lg font-medium">Sem Votos</span>
                     </div>
+                  )}
+                </div>
+                {result.totalVotes > 0 && (
+                  <>
                     <div className="flex gap-4 mt-6">
                       <div className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded bg-green-500" />
@@ -221,8 +237,6 @@ export function Results() {
                       <div className="text-[14px] font-medium text-[#91969C] tracking-tight uppercase">Taxa de Aprovacao</div>
                     </div>
                   </>
-                ) : (
-                  <div className="text-[#0677F9] text-lg font-medium">Sem Votos</div>
                 )}
               </div>
             </div>
