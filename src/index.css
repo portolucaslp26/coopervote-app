@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Source Code Pro', system-ui, sans-serif;
+  --color-primary: #0677F9;
+  --color-success: #22C55E;
+  --color-danger: #D92626;
+  --color-warning: #F59E0B;
+  --color-info: #06B6D4;
+  --color-surface: #F9FAFA;
+  --color-card: #FFFFFF;
+  --color-text: #171A1C;
+  --color-text-muted: #91969C;
+  --color-border: #F4F5F6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  background: #FFFFFF;
+  color: var(--color-text);
+}
