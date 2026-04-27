@@ -32,7 +32,8 @@ export function VotingPage() {
       const sessionData = await sessionService.getById(Number(id));
       setSession(sessionData);
       
-      if (!sessionData.isActive) {
+      const isExpired = new Date(sessionData.endTime) <= new Date();
+      if (!sessionData.isActive || isExpired) {
         addToast({ type: 'warning', message: 'Sessao ja foi encerrada' });
         navigate('/pautas');
         return;
@@ -97,9 +98,9 @@ export function VotingPage() {
 
   if (loading) {
     return (
-      <div className="flex-1 flex items-center justify-center p-4">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0677F9]"></div>
-      </div>
+        <div className="flex-1 flex items-center justify-center p-4" data-testid="loading">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0677F9]"></div>
+        </div>
     );
   }
 

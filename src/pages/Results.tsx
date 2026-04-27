@@ -64,9 +64,9 @@ export function Results() {
 
   if (loading) {
     return (
-      <div className="flex-1 p-4 lg:p-8 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0677F9]"></div>
-      </div>
+        <div className="flex-1 p-4 lg:p-8 flex items-center justify-center" data-testid="loading">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0677F9]"></div>
+        </div>
     );
   }
 
@@ -173,74 +173,76 @@ export function Results() {
           </div>
         </div>
 
-        <div className="bg-white border border-[#F4F5F6] rounded-2xl p-6 lg:p-10 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6">
-          <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center shrink-0">
-            <Icon 
-              icon={result.result === 'APPROVED' ? 'lucide:check' : result.result === 'REJECTED' ? 'lucide:x' : 'lucide:minus'} 
-              className={`w-10 h-10 ${result.result === 'APPROVED' ? 'text-green-600' : result.result === 'REJECTED' ? 'text-red-600' : 'text-yellow-600'}`}
-            />
-          </div>
-          <div className="flex-1 text-center md:text-left space-y-2">
-            <span className="text-[#91969C] text-sm font-medium tracking-widest uppercase">Veredito Final</span>
-            <h2 className={`text-4xl font-bold ${
-              result.result === 'APPROVED' ? 'text-green-600' : 
-              result.result === 'REJECTED' ? 'text-red-600' : 'text-yellow-600'
-            }`}>
-              {result.result === 'APPROVED' ? 'Aprovado' : result.result === 'REJECTED' ? 'Rejeitado' : 'Empate'}
-            </h2>
-            <p className="text-[#91969C] text-base max-w-md">
-              Estadecisao foi ratificada pelo quórum legal e entra em vigor imediatamente.
-            </p>
-          </div>
-        </div>
-
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div className="lg:col-span-5 bg-white border border-[#F4F5F6] rounded-2xl shadow-sm overflow-hidden flex flex-col">
-            <div className="p-6 bg-[#F9FAFA]/50 border-b border-[#F4F5F6]">
-              <div className="flex items-center gap-3 mb-1">
-                <Icon icon="lucide:pie-chart" className="w-5 h-5" />
-                <h3 className="text-xl font-semibold tracking-tight">Distribuicao de Votos</h3>
+          <div className="lg:col-span-5 space-y-6">
+            <div className="bg-white border border-[#F4F5F6] rounded-2xl shadow-sm overflow-hidden flex flex-col">
+              <div className="p-6 bg-[#F9FAFA]/50 border-b border-[#F4F5F6]">
+                <div className="flex items-center gap-3 mb-1">
+                  <Icon icon="lucide:pie-chart" className="w-5 h-5" />
+                  <h3 className="text-xl font-semibold tracking-tight">Distribuicao de Votos</h3>
+                </div>
+              </div>
+              <div className="flex-1 p-8 flex flex-col items-center justify-center min-h-[300px]">
+                <div className="relative w-full max-w-[250px] aspect-square">
+                  <svg viewBox="0 0 100 100" className="w-full h-full">
+                    {result.totalVotes > 0 && (
+                      <>
+                        <circle
+                          cx="50" cy="50" r="40"
+                          fill="transparent"
+                          stroke="#22C55E"
+                          strokeWidth="20"
+                          strokeDasharray={`${(result.yesVotes / result.totalVotes) * 251.2} 251.2`}
+                          transform="rotate(-90 50 50)"
+                        />
+                        <circle
+                          cx="50" cy="50" r="40"
+                          fill="transparent"
+                          stroke="#D92626"
+                          strokeWidth="20"
+                          strokeDasharray={`${(result.noVotes / result.totalVotes) * 251.2} 251.2`}
+                          strokeDashoffset={`-${(result.yesVotes / result.totalVotes) * 251.2}`}
+                          transform="rotate(-90 50 50)"
+                        />
+                      </>
+                    )}
+                  </svg>
+                </div>
+                <div className="flex gap-4 mt-6">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded bg-green-500" />
+                    <span className="text-sm">SIM</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded bg-red-500" />
+                    <span className="text-sm">NAO</span>
+                  </div>
+                </div>
+                <div className="mt-8 text-center">
+                  <div className="text-[30px] font-bold text-[#0677F9]">{approvalRate}%</div>
+                  <div className="text-[14px] font-medium text-[#91969C] tracking-tight uppercase">Taxa de Aprovacao</div>
+                </div>
               </div>
             </div>
-            <div className="flex-1 p-8 flex flex-col items-center justify-center min-h-[300px]">
-              <div className="relative w-full max-w-[250px] aspect-square">
-                <svg viewBox="0 0 100 100" className="w-full h-full">
-                  {result.totalVotes > 0 && (
-                    <>
-                      <circle 
-                        cx="50" cy="50" r="40" 
-                        fill="transparent" 
-                        stroke="#22C55E" 
-                        strokeWidth="20"
-                        strokeDasharray={`${(result.yesVotes / result.totalVotes) * 251.2} 251.2`}
-                        transform="rotate(-90 50 50)"
-                      />
-                      <circle 
-                        cx="50" cy="50" r="40" 
-                        fill="transparent" 
-                        stroke="#D92626" 
-                        strokeWidth="20"
-                        strokeDasharray={`${(result.noVotes / result.totalVotes) * 251.2} 251.2`}
-                        strokeDashoffset={`-${(result.yesVotes / result.totalVotes) * 251.2}`}
-                        transform="rotate(-90 50 50)"
-                      />
-                    </>
-                  )}
-                </svg>
+
+            <div className="bg-white border border-[#F4F5F6] rounded-2xl p-6 lg:p-10 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6">
+              <div className="w-16 h-16 rounded-full bg-white shadow-lg flex items-center justify-center shrink-0">
+                <Icon
+                  icon={result.result === 'APPROVED' ? 'lucide:check' : result.result === 'REJECTED' ? 'lucide:x' : 'lucide:minus'}
+                  className={`w-10 h-10 ${result.result === 'APPROVED' ? 'text-green-600' : result.result === 'REJECTED' ? 'text-red-600' : 'text-yellow-600'}`}
+                />
               </div>
-              <div className="flex gap-4 mt-6">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded bg-green-500" />
-                  <span className="text-sm">SIM</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded bg-red-500" />
-                  <span className="text-sm">NAO</span>
-                </div>
-              </div>
-              <div className="mt-8 text-center">
-                <div className="text-[30px] font-bold text-[#0677F9]">{approvalRate}%</div>
-                <div className="text-[14px] font-medium text-[#91969C] tracking-tight uppercase">Taxa de Aprovacao</div>
+              <div className="flex-1 text-center md:text-left space-y-2">
+                <span className="text-[#91969C] text-sm font-medium tracking-widest uppercase">Veredito Final</span>
+                <h2 className={`text-4xl font-bold ${
+                  result.result === 'APPROVED' ? 'text-green-600' :
+                  result.result === 'REJECTED' ? 'text-red-600' : 'text-yellow-600'
+                }`}>
+                  {result.result === 'APPROVED' ? 'Aprovado' : result.result === 'REJECTED' ? 'Rejeitado' : 'Empate'}
+                </h2>
+                <p className="text-[#91969C] text-base max-w-md">
+                  Estadecisao foi ratificada pelo quórum legal e entra em vigor imediatamente.
+                </p>
               </div>
             </div>
           </div>

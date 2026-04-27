@@ -97,8 +97,10 @@ export function PautaDetail() {
     );
   }
 
+  const isSessionActive = session && session.isActive && new Date(session.endTime) > new Date();
+  
   const status = session 
-    ? session.isActive 
+    ? isSessionActive
       ? { label: 'Ativo', class: 'bg-green-50 text-green-700 border-green-200' }
       : { label: 'Encerrado', class: 'bg-gray-100 text-gray-600 border-gray-200' }
     : { label: 'Pendente', class: 'bg-amber-50 text-amber-700 border-amber-200' };
@@ -279,16 +281,7 @@ export function PautaDetail() {
                   {submitting ? 'Encerrando...' : 'Encerrar Sessao'}
                 </motion.button>
               </div>
-            ) : (
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Link 
-                  to={`/pautas/${session.agendaId}`}
-                  className="w-full py-3 block bg-white border border-gray-300 text-gray-700 rounded-xl font-medium hover:bg-gray-50 transition-colors text-center"
-                >
-                  Ver Resultado
-                </Link>
-              </motion.div>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

@@ -54,7 +54,7 @@ export function PautaList() {
 
   if (loading) {
     return (
-      <div className="flex-1 p-4 lg:p-12 flex items-center justify-center">
+        <div className="flex-1 p-4 lg:p-12 flex items-center justify-center" data-testid="loading">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#0677F9]"></div>
       </div>
     );
