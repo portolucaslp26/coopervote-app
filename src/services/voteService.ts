@@ -1,9 +1,5 @@
-import axios from 'axios';
+import { api } from './api';
 import type { Vote, CastVoteRequest, VotingResult } from '../types';
-
-const api = axios.create({
-  baseURL: '/api/v1',
-});
 
 export const voteService = {
   cast: async (sessionId: number, request: CastVoteRequest): Promise<Vote> => {

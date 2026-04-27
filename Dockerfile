@@ -1,5 +1,8 @@
 # Stage 1: Build
-FROM node:21-alpine AS builder
+#
+# Vite 8 + tooling here requires Node 20.19+ or 22.12+.
+# Also, Alpine (musl) can cause optional native deps (e.g. rolldown) to fail.
+FROM node:22-bookworm-slim AS builder
 
 WORKDIR /app
 

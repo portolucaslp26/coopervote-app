@@ -1,9 +1,5 @@
-import axios from 'axios';
+import { api } from './api';
 import type { VotingSession, OpenSessionRequest } from '../types';
-
-const api = axios.create({
-  baseURL: '/api/v1',
-});
 
 export const sessionService = {
   open: async (agendaId: number, request: OpenSessionRequest): Promise<VotingSession> => {

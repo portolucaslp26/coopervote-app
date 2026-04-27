@@ -1,9 +1,5 @@
-import axios from 'axios';
+import { api } from './api';
 import type { Agenda, CreateAgendaRequest } from '../types';
-
-const api = axios.create({
-  baseURL: '/api/v1',
-});
 
 export const agendaService = {
   getAll: async (): Promise<Agenda[]> => {

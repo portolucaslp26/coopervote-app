@@ -21,7 +21,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <nav className="flex flex-col h-full p-4">
-          <div className="space-y-2 flex-1 pt-4">
+          <div className="space-y-2 flex-1 pt-16">
             <NavLink 
               to="/"
               className={({ isActive }) => `
