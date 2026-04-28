@@ -21,8 +21,12 @@ RUN npm run build
 # Stage 2: Production
 FROM nginx:alpine
 
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Copy nginx template and entrypoint
+COPY nginx.template.conf /etc/nginx/conf.d/default.conf.template
+COPY entrypoint.sh /
+
+# Make entrypoint executable
+RUN chmod +x /entrypoint.sh
 
 # Copy build artifacts from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
@@ -34,5 +38,5 @@ EXPOSE 80
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD wget -q --spider http://localhost:80 || exit 1
 
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Start via entrypoint
+ENTRYPOINT ["/entrypoint.sh"]

@@ -2,6 +2,39 @@
 
 Interface web para o sistema de votação cooperativista.
 
+## Início Rápido
+
+### Pré-requisitos
+- Docker
+- Docker Compose
+- API backend rodando em `http://localhost:8080`
+
+### Executar com Docker Compose
+
+```bash
+# Na raiz do projeto coopervote-react/
+docker-compose up -d
+```
+
+O frontend estará disponível em: **http://localhost**
+
+### Configurar URL da API
+
+Para alterar a URL da API, edite o arquivo `docker-compose.yml`:
+
+```yaml
+environment:
+  - API_URL=http://seu-servidor:8080
+```
+
+### Parar a aplicação
+
+```bash
+docker-compose down
+```
+
+---
+
 ## Visão Geral
 
 Aplicação React para gerenciamento de assembleias e votação:

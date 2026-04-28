@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build: .
+    image: coopervote/frontend:latest
+    container_name: coopervote-frontend
+    ports:
+      - "80:80"
+    environment:
+      - API_URL=http://host.docker.internal:8080
+    restart: unless-stopped
+
+networks:
+  default:
+    name: coopervote-network
