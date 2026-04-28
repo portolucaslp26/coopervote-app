@@ -90,16 +90,85 @@ Os arquivos serão gerados em `dist/`.
 
 ## Docker
 
-### Build Manual
+### Pré-requisitos
+
+- Docker instalado
+- API backend rodando (para funcionalidade completa)
+
+### Build da Imagem
 
 ```bash
+# Na raiz do projeto coopervote-react/
 docker build -t coopervote/frontend:latest .
 ```
 
-### Run Manual
+### Executar Container (Standalone)
 
 ```bash
-docker run -d -p 80:80 coopervote/frontend:latest
+# Executar na porta 80
+docker run -d \
+  --name coopervote-frontend \
+  -p 80:80 \
+  coopervote/frontend:latest
+```
+
+Acesse: **http://localhost**
+
+### Executar Conectando na API (Mesma Máquina)
+
+```bash
+# Se a API estiver rodando no host (localhost:8080)
+docker run -d \
+  --name coopervote-frontend \
+  -p 80:80 \
+  --add-host=host.docker.internal:host-gateway \
+  coopervote/frontend:latest
+```
+
+**Nota**: O nginx está configurado para fazer proxy de `/api/` para `http://api:8080`. Para rodar standalone, você pode:
+
+1. Alterar o `nginx.conf` para apontar para `host.docker.internal:8080`
+2. Ou usar docker-compose para orquestração (veja abaixo)
+
+### Executar com Docker Compose (Recomendado para Dev)
+
+Crie um `docker-compose.yml` na raiz do frontend:
+
+```yaml
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: coopervote/frontend:latest
+    container_name: coopervote-frontend
+    ports:
+      - "80:80"
+    networks:
+      - coopervote-network
+    restart: unless-stopped
+
+networks:
+  coopervote-network:
+    driver: bridge
+```
+
+E execute:
+```bash
+docker-compose up -d --build
+```
+
+### Ver Logs
+
+```bash
+docker logs -f coopervote-frontend
+```
+
+### Parar e Remover
+
+```bash
+docker stop coopervote-frontend
+docker rm coopervote-frontend
 ```
 
 ### Estrutura Docker
