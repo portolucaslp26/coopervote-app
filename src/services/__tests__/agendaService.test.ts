@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { agendaService } from '../agendaService';
 import { server } from '../../test/setup';
 import { http, HttpResponse } from 'msw';

@@ -1,7 +1,7 @@
 import { http, HttpResponse, delay } from 'msw';
-import type { Agenda, VotingSession, VotingResult, CastVoteRequest } from '../../types';
+import type { Agenda, VotingSession, VotingResult, CastVoteRequest } from '../types';
 
-const baseUrl = 'http://localhost:8080/api/v1';
+export const baseUrl = 'http://localhost:8080/api/v1';
 
 let agendas: Agenda[] = [
   { id: 1, title: 'Pauta Teste 1', description: 'Descricao 1', createdAt: '2026-04-27' },
@@ -66,10 +66,10 @@ export const handlers = [
     return HttpResponse.json(session);
   }),
 
-  http.post<{ durationMinutes?: number }>(`${baseUrl}/sessions/agenda/:agendaId`, async ({ params, request }) => {
+  http.post(`${baseUrl}/sessions/agenda/:agendaId`, async ({ params, request }) => {
     await delay(100);
     const body = await request.json() as { durationMinutes?: number };
-    const { durationMinutes = 1 } = body;
+    const durationMinutes = body.durationMinutes || 1;
     const newSession: VotingSession = {
       id: nextSessionId++,
       agendaId: Number(params.agendaId),
@@ -90,7 +90,7 @@ export const handlers = [
     return HttpResponse.json(session);
   }),
 
-  http.post<CastVoteRequest>(`${baseUrl}/votes/session/:sessionId`, async ({ params, request }) => {
+  http.post(`${baseUrl}/votes/session/:sessionId`, async ({ params, request }) => {
     await delay(100);
     const body = await request.json() as CastVoteRequest;
     const { cpf, voteValue } = body;
