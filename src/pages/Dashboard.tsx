@@ -5,6 +5,7 @@ import { agendaService } from '../services/agendaService';
 import { sessionService } from '../services/sessionService';
 import { useAppStore } from '../stores/appStore';
 import type { Agenda, VotingSession } from '../types';
+import { formatDate } from '../utils';
 
 interface AgendaWithSession extends Agenda {
   session?: VotingSession;
@@ -112,7 +113,7 @@ export function Dashboard() {
                     {status.label}
                   </span>
                   <span className="text-[10px] font-medium text-[#91969C] uppercase tracking-tight">
-                    {new Date(agenda.createdAt).toLocaleDateString('pt-BR')}
+                    {formatDate(agenda.createdAt)}
                   </span>
                 </div>
                 <h4 className="text-lg font-semibold text-[#171A1C] mb-2 leading-tight">

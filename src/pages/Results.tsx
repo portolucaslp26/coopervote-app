@@ -6,6 +6,7 @@ import { sessionService } from '../services/sessionService';
 import { voteService } from '../services/voteService';
 import { useAppStore } from '../stores/appStore';
 import type { Agenda, VotingSession, VotingResult } from '../types';
+import { getApprovalRate, formatDateTime, formatDate } from '../utils';
 
 export function Results() {
   const { id } = useParams<{ id: string }>();
@@ -154,7 +155,7 @@ export function Results() {
     );
   }
 
-  const approvalRate = result.totalVotes > 0 ? ((result.yesVotes / result.totalVotes) * 100).toFixed(1) : 0;
+  const approvalRate = getApprovalRate(result.yesVotes, result.totalVotes);
 
   return (
     <div className="flex-1 overflow-y-auto p-4 lg:p-8">
@@ -171,16 +172,16 @@ export function Results() {
             </h1>
             <div className="flex items-center gap-2 text-[#91969C] text-sm">
               <Icon icon="lucide:clock" className="w-4 h-4" />
-              <span>Finalizado em {new Date(session.endTime).toLocaleDateString('pt-BR')}</span>
+              <span>Finalizado em {formatDate(session.endTime)}</span>
             </div>
             <div className="flex items-center gap-4 text-sm text-[#91969C]">
               <span className="flex items-center gap-1">
                 <Icon icon="lucide:play" className="w-3 h-3" />
-                Inicio: {new Date(session.startTime).toLocaleString('pt-BR')}
+                Inicio: {formatDateTime(session.startTime)}
               </span>
               <span className="flex items-center gap-1">
                 <Icon icon="lucide:stop-circle" className="w-3 h-3" />
-                Fim: {new Date(session.endTime).toLocaleString('pt-BR')}
+                Fim: {formatDateTime(session.endTime)}
               </span>
             </div>
           </div>
@@ -298,14 +299,17 @@ export function Results() {
                     <td className="py-4 px-6 font-medium text-green-800">SIM</td>
                     <td className="py-4 px-4 text-right">{result.yesVotes}</td>
                     <td className="py-4 px-6 text-right font-semibold text-green-800">
-                      {result.totalVotes > 0 ? ((result.yesVotes / result.totalVotes) * 100).toFixed(1) : 0}%
+                      {getApprovalRate(result.yesVotes, result.totalVotes)}%
                     </td>
                   </tr>
                   <tr>
                     <td className="py-4 px-6 font-medium text-red-800">NAO</td>
                     <td className="py-4 px-4 text-right">{result.noVotes}</td>
                     <td className="py-4 px-6 text-right font-semibold text-red-800">
-                      {result.totalVotes > 0 ? ((result.noVotes / result.totalVotes) * 100).toFixed(1) : 0}%
+                      {(() => {
+                        if (result.totalVotes === 0) return '0';
+                        return ((result.noVotes / result.totalVotes) * 100).toFixed(1);
+                      })()}%
                     </td>
                   </tr>
                   <tr className="bg-[#F9FAFA] font-bold">

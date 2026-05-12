@@ -5,6 +5,7 @@ import { agendaService } from '../services/agendaService';
 import { sessionService } from '../services/sessionService';
 import { useAppStore } from '../stores/appStore';
 import type { Agenda, VotingSession } from '../types';
+import { formatDate } from '../utils';
 
 interface AgendaWithSession extends Agenda {
   session?: VotingSession;
@@ -121,7 +122,7 @@ export function PautaList() {
                         </div>
                       </td>
                       <td className="px-4 py-5 text-[14px] text-[#91969C]">
-                        {new Date(agenda.createdAt).toLocaleDateString('pt-BR')}
+                        {formatDate(agenda.createdAt)}
                       </td>
                       <td className="px-4 py-5">
                         <span className={`px-3 py-0.5 rounded-full text-[12px] font-semibold border ${status.class}`}>

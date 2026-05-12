@@ -8,6 +8,7 @@ import { voteService } from '../services/voteService';
 import { useAppStore } from '../stores/appStore';
 import { ConfirmModal } from '../components/ConfirmModal';
 import type { Agenda, VotingSession, VotingResult } from '../types';
+import { formatDateTime, formatDate, getApprovalRate } from '../utils';
 
 export function PautaDetail() {
   const { id } = useParams<{ id: string }>();
@@ -138,7 +139,7 @@ export function PautaDetail() {
           <div className="flex flex-wrap gap-6 text-sm text-[#91969C]">
             <div className="flex items-center gap-2">
               <Icon icon="lucide:calendar" className="w-4 h-4" />
-              {new Date(agenda.createdAt).toLocaleDateString('pt-BR')}
+              {formatDate(agenda.createdAt)}
             </div>
             <div className="flex items-center gap-2">
               <Icon icon="lucide:hash" className="w-4 h-4" />
@@ -199,12 +200,15 @@ export function PautaDetail() {
                         <tr>
                           <td className="py-2 font-medium text-green-600">Votos SIM</td>
                           <td className="py-2 text-right">{result.yesVotes}</td>
-                          <td className="py-2 text-right font-semibold text-green-600">{result.totalVotes > 0 ? ((result.yesVotes / result.totalVotes) * 100).toFixed(1) : 0}%</td>
+                          <td className="py-2 text-right font-semibold text-green-600">{getApprovalRate(result.yesVotes, result.totalVotes)}%</td>
                         </tr>
                         <tr>
                           <td className="py-2 font-medium text-red-600">Votos NAO</td>
                           <td className="py-2 text-right">{result.noVotes}</td>
-                          <td className="py-2 text-right font-semibold text-red-600">{result.totalVotes > 0 ? ((result.noVotes / result.totalVotes) * 100).toFixed(1) : 0}%</td>
+                          <td className="py-2 text-right font-semibold text-red-600">{(() => {
+                            if (result.totalVotes === 0) return '0';
+                            return ((result.noVotes / result.totalVotes) * 100).toFixed(1);
+                          })()}%</td>
                         </tr>
                         <tr className="bg-gray-50 font-bold">
                           <td className="py-2">Total</td>
@@ -217,7 +221,7 @@ export function PautaDetail() {
                 </div>
                 
                 <div className="text-center p-4 bg-gray-50 rounded-xl">
-                  <div className="text-3xl font-bold text-[#0677F9]">{result.totalVotes > 0 ? ((result.yesVotes / result.totalVotes) * 100).toFixed(1) : 0}%</div>
+                  <div className="text-3xl font-bold text-[#0677F9]">{getApprovalRate(result.yesVotes, result.totalVotes)}%</div>
                   <div className="text-xs text-[#91969C] uppercase">Taxa de Aprovacao</div>
                 </div>
               </motion.section>
@@ -240,12 +244,12 @@ export function PautaDetail() {
                 <div className="mt-4 space-y-2 text-sm text-[#91969C]">
                   <div className="flex justify-between">
                     <span>Inicio:</span>
-                    <span>{new Date(session.startTime).toLocaleString('pt-BR')}</span>
+                    <span>{formatDateTime(session.startTime)}</span>
                   </div>
                   {session.endTime && (
                     <div className="flex justify-between">
                       <span>Fim:</span>
-                      <span>{new Date(session.endTime).toLocaleString('pt-BR')}</span>
+                      <span>{formatDateTime(session.endTime)}</span>
                     </div>
                   )}
                 </div>

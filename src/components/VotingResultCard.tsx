@@ -1,14 +1,17 @@
 import { motion } from 'framer-motion';
 import { VoteDistributionChart } from './VoteDistributionChart';
 import type { VotingResult } from '../types';
+import { calculatePercentage, formatPercentage, getApprovalRate } from '../utils';
 
 interface VotingResultCardProps {
   result: VotingResult;
 }
 
 export function VotingResultCard({ result }: VotingResultCardProps) {
-  const yesPercentage = result.totalVotes > 0 ? ((result.yesVotes / result.totalVotes) * 100).toFixed(1) : 0;
-  const noPercentage = result.totalVotes > 0 ? ((result.noVotes / result.totalVotes) * 100).toFixed(1) : 0;
+  const { yes, no } = calculatePercentage(result.yesVotes, result.noVotes, result.totalVotes);
+  const yesFormatted = formatPercentage(yes);
+  const noFormatted = formatPercentage(no);
+  const approvalRate = getApprovalRate(result.yesVotes, result.totalVotes);
 
   return (
     <motion.section
@@ -44,12 +47,12 @@ export function VotingResultCard({ result }: VotingResultCardProps) {
               <tr>
                 <td className="py-2 font-medium text-green-600">Votos SIM</td>
                 <td className="py-2 text-right">{result.yesVotes}</td>
-                <td className="py-2 text-right font-semibold text-green-600">{yesPercentage}%</td>
+                <td className="py-2 text-right font-semibold text-green-600">{yesFormatted}%</td>
               </tr>
               <tr>
                 <td className="py-2 font-medium text-red-600">Votos NAO</td>
                 <td className="py-2 text-right">{result.noVotes}</td>
-                <td className="py-2 text-right font-semibold text-red-600">{noPercentage}%</td>
+                <td className="py-2 text-right font-semibold text-red-600">{noFormatted}%</td>
               </tr>
               <tr className="bg-gray-50 font-bold">
                 <td className="py-2">Total</td>
@@ -62,7 +65,7 @@ export function VotingResultCard({ result }: VotingResultCardProps) {
       </div>
 
       <div className="text-center p-4 bg-gray-50 rounded-xl">
-        <div className="text-3xl font-bold text-[#0677F9]">{yesPercentage}%</div>
+        <div className="text-3xl font-bold text-[#0677F9]">{approvalRate}%</div>
         <div className="text-xs text-[#91969C] uppercase">Taxa de Aprovacao</div>
       </div>
     </motion.section>

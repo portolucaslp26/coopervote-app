@@ -1,13 +1,14 @@
 import { Icon } from '@iconify/react';
 import { VoteDistributionChart } from './VoteDistributionChart';
 import type { VotingResult } from '../types';
+import { getApprovalRate } from '../utils';
 
 interface VoteDistributionCardProps {
   result: VotingResult;
 }
 
 export function VoteDistributionCard({ result }: VoteDistributionCardProps) {
-  const approvalRate = result.totalVotes > 0 ? ((result.yesVotes / result.totalVotes) * 100).toFixed(1) : 0;
+  const approvalRate = getApprovalRate(result.yesVotes, result.totalVotes);
 
   return (
     <div className="bg-white border border-[#F4F5F6] rounded-2xl shadow-sm overflow-hidden flex flex-col">

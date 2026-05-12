@@ -1,13 +1,15 @@
 import { Icon } from '@iconify/react';
 import type { VotingResult } from '../types';
+import { calculatePercentage, formatPercentage } from '../utils';
 
 interface ParticipationTableProps {
   result: VotingResult;
 }
 
 export function ParticipationTable({ result }: ParticipationTableProps) {
-  const yesPercentage = result.totalVotes > 0 ? ((result.yesVotes / result.totalVotes) * 100).toFixed(1) : 0;
-  const noPercentage = result.totalVotes > 0 ? ((result.noVotes / result.totalVotes) * 100).toFixed(1) : 0;
+  const { yes, no } = calculatePercentage(result.yesVotes, result.noVotes, result.totalVotes);
+  const yesFormatted = formatPercentage(yes);
+  const noFormatted = formatPercentage(no);
 
   return (
     <div className="bg-white border border-[#F4F5F6] rounded-2xl shadow-sm overflow-hidden">
@@ -29,12 +31,12 @@ export function ParticipationTable({ result }: ParticipationTableProps) {
           <tr>
             <td className="py-4 px-6 font-medium text-green-800">SIM</td>
             <td className="py-4 px-4 text-right">{result.yesVotes}</td>
-            <td className="py-4 px-6 text-right font-semibold text-green-800">{yesPercentage}%</td>
+            <td className="py-4 px-6 text-right font-semibold text-green-800">{yesFormatted}%</td>
           </tr>
           <tr>
             <td className="py-4 px-6 font-medium text-red-800">NAO</td>
             <td className="py-4 px-4 text-right">{result.noVotes}</td>
-            <td className="py-4 px-6 text-right font-semibold text-red-800">{noPercentage}%</td>
+            <td className="py-4 px-6 text-right font-semibold text-red-800">{noFormatted}%</td>
           </tr>
           <tr className="bg-[#F9FAFA] font-bold">
             <td className="py-5 px-6">Total</td>
