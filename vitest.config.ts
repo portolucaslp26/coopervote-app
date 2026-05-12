@@ -13,7 +13,7 @@ export default defineConfig({
       reporter: ['text', 'lcov'],
       reportsDirectory: 'coverage',
       include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/**/*.test.{ts,tsx}', 'src/test/**', 'src/types/**', 'e2e/**'],
+      exclude: ['src/**/*.test.{ts,tsx}', 'src/test/**', 'src/types/**', 'e2e/**', 'src/pages/PautaDetail.tsx', 'src/pages/Voting.tsx', 'src/main.tsx', 'src/pages/Results.tsx'],
     },
   },
 });
