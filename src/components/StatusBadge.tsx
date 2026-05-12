@@ -1,7 +1,7 @@
 import type { VotingSession } from '../types';
 
 interface StatusBadgeProps {
-  session?: VotingSession;
+  session?: VotingSession | null;
   className?: string;
 }
 
