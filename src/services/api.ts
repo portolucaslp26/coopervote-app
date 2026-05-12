@@ -1,7 +1,10 @@
 import axios from 'axios';
 
 function joinUrl(base: string, path: string) {
-  const normalizedBase = base.replace(/\/+$/, '');
+  let normalizedBase = base;
+  while (normalizedBase.endsWith('/')) {
+    normalizedBase = normalizedBase.slice(0, -1);
+  }
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
   return `${normalizedBase}${normalizedPath}`;
 }
