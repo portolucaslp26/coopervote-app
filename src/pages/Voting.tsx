@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, startTransition } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
@@ -23,14 +23,12 @@ export function VotingPage() {
   const [pendingVote, setPendingVote] = useState<boolean | null>(null);
   const { addToast } = useAppStore();
 
-  useEffect(() => {
-    if (id) loadData();
-  }, [id]);
-
   const loadData = async () => {
     try {
       const sessionData = await sessionService.getById(Number(id));
-      setSession(sessionData);
+      startTransition(() => {
+        setSession(sessionData);
+      });
       
       const isExpired = new Date(sessionData.endTime) <= new Date();
       if (!sessionData.isActive || isExpired) {
@@ -40,14 +38,22 @@ export function VotingPage() {
       }
       
       const agendaData = await agendaService.getById(sessionData.agendaId);
-      setAgenda(agendaData);
-    } catch (error) {
+      startTransition(() => {
+        setAgenda(agendaData);
+      });
+    } catch {
       addToast({ type: 'error', message: 'Erro ao carregar sessao' });
       navigate('/pautas');
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   };
+
+  useEffect(() => {
+    if (id) loadData();
+  }, [id]);
 
   const handleVoteClick = (voteValue: boolean) => {
     if (!isValid()) {
@@ -66,9 +72,10 @@ export function VotingPage() {
       await voteService.cast(Number(id), { cpf: getDigits(), voteValue: pendingVote });
       setVoted(true);
       addToast({ type: 'success', message: 'Voto registrado com sucesso!' });
-    } catch (error: any) {
-      const data = error.response?.data;
-      const status = error.response?.status;
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { detail?: string; title?: string }; status?: number } };
+      const data = err.response?.data;
+      const status = err.response?.status;
       let message = 'Erro ao registrar voto';
       let type: 'error' | 'warning' = 'error';
       

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, startTransition } from 'react';
 import { agendaService } from '../services/agendaService';
 import { sessionService } from '../services/sessionService';
 import type { Agenda, VotingSession } from '../types';
@@ -16,7 +16,9 @@ export function useAgendaWithSession(options: UseAgendaWithSessionOptions = {}) 
   const [loading, setLoading] = useState(true);
 
   const loadAgendas = useCallback(async () => {
-    setLoading(true);
+    startTransition(() => {
+      setLoading(true);
+    });
     try {
       const data = await agendaService.getAll();
       const agendasWithSessions = await Promise.all(
@@ -29,11 +31,15 @@ export function useAgendaWithSession(options: UseAgendaWithSessionOptions = {}) 
           }
         })
       );
-      setAgendas(agendasWithSessions);
+      startTransition(() => {
+        setAgendas(agendasWithSessions);
+      });
     } catch {
       options.onError?.('Nao foi possivel carregar as pautas');
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   }, [options.onError]);
 
@@ -50,21 +56,31 @@ export function useAgendaWithSessionById(id: number, options: UseAgendaWithSessi
   const [loading, setLoading] = useState(true);
 
   const loadData = useCallback(async () => {
-    setLoading(true);
+    startTransition(() => {
+      setLoading(true);
+    });
     try {
       const agendaData = await agendaService.getById(id);
-      setAgenda(agendaData);
+      startTransition(() => {
+        setAgenda(agendaData);
+      });
 
       try {
         const sessionData = await sessionService.getByAgendaId(id);
-        setSession(sessionData);
+        startTransition(() => {
+          setSession(sessionData);
+        });
       } catch {
-        setSession(null);
+        startTransition(() => {
+          setSession(null);
+        });
       }
     } catch {
       options.onError?.('Nao foi possivel carregar a pauta');
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   }, [id, options.onError]);
 

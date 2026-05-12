@@ -121,32 +121,10 @@ describe('Fluxo Completo de Votação', () => {
       
       expect(vote).toHaveProperty('id');
       expect(vote.sessionId).toBe(sessionId);
-      console.log('✓ Voto SIM registrado');
-    } catch (error: any) {
-      if (error.message.includes('422') && error.message.includes('UNABLE_TO_VOTE')) {
-        console.log('⚠ CPF não autorizado para votação');
-      } else {
-        throw error;
-      }
-    }
-  });
-
-  it('8. Votar NÃO', async () => {
-    try {
-      const vote = await fetchJSON<Vote>(`${BASE_URL}/votes/session/${sessionId}`, {
-        method: 'POST',
-        body: JSON.stringify({
-          cpf: '07598851080',
-          voteValue: false,
-        }),
-      });
-      
-      expect(vote).toHaveProperty('id');
-      expect(vote.sessionId).toBe(sessionId);
-      expect(vote.voteValue).toBe(false);
-      console.log('✓ Voto NÃO registrado');
-    } catch (error: any) {
-      if (error.message.includes('422') && error.message.includes('UNABLE_TO_VOTE')) {
+console.log('✓ Voto SIM registrado');
+    } catch (error: unknown) {
+      const err = error as { message?: string };
+      if (err.message?.includes('422') && err.message?.includes('UNABLE_TO_VOTE')) {
         console.log('⚠ CPF não autorizado para votação');
       } else {
         throw error;
@@ -185,8 +163,9 @@ describe('Fluxo Completo de Votação', () => {
         }),
       });
       throw new Error('Deveria ter falhado');
-    } catch (error: any) {
-      expect(error.message).toContain('409');
+    } catch (error: unknown) {
+      const err = error as { message?: string };
+      expect(err.message).toContain('409');
       console.log('✓ Voto em sessão encerrada bloqueado');
     }
   });

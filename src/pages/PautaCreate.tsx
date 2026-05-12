@@ -24,7 +24,7 @@ setSubmitting(true);
       await agendaService.create({ title, description });
       addToast({ type: 'success', message: 'Pauta criada com sucesso!' });
       navigate('/');
-    } catch (error) {
+    } catch {
       addToast({ type: 'error', message: 'Nao foi possivel criar a pauta' });
     } finally {
       setSubmitting(false);

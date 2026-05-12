@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, startTransition } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Icon } from '@iconify/react';
@@ -21,35 +21,49 @@ export function PautaDetail() {
   const [duration, setDuration] = useState(1);
   const { addToast } = useAppStore();
 
-  useEffect(() => {
-    if (id) loadData();
-  }, [id]);
-
   const loadData = async () => {
     try {
       const agendaData = await agendaService.getById(Number(id));
-      setAgenda(agendaData);
+      startTransition(() => {
+        setAgenda(agendaData);
+      });
       
       try {
         const sessionData = await sessionService.getByAgendaId(Number(id));
-        setSession(sessionData);
+        startTransition(() => {
+          setSession(sessionData);
+        });
         
         if (!sessionData.isActive) {
           try {
             const resultData = await voteService.getResult(sessionData.id);
-            setResult(resultData);
-          } catch {}
+            startTransition(() => {
+              setResult(resultData);
+            });
+          } catch {
+            startTransition(() => {
+              setResult(null);
+            });
+          }
         }
       } catch {
-        setSession(null);
+        startTransition(() => {
+          setSession(null);
+        });
       }
-    } catch (error) {
+    } catch {
       addToast({ type: 'error', message: 'Nao foi possivel carregar a pauta' });
       navigate('/pautas');
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   };
+
+  useEffect(() => {
+    if (id) loadData();
+  }, [id]);
 
   const handleOpenSession = async (duration: number = 1) => {
     setSubmitting(true);
@@ -57,8 +71,9 @@ export function PautaDetail() {
       const sessionData = await sessionService.open(Number(id), { durationMinutes: duration });
       setSession(sessionData);
       addToast({ type: 'success', message: 'Sessao de votacao aberta com sucesso!' });
-    } catch (error: any) {
-      addToast({ type: 'error', message: error.response?.data?.detail || error.response?.data?.title || 'Nao foi possivel abrir a sessao' });
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { detail?: string; title?: string } } };
+      addToast({ type: 'error', message: err.response?.data?.detail || err.response?.data?.title || 'Nao foi possivel abrir a sessao' });
     } finally {
       setSubmitting(false);
     }
@@ -78,7 +93,7 @@ export function PautaDetail() {
       
       const resultData = await voteService.getResult(sessionData.id);
       setResult(resultData);
-    } catch (error) {
+    } catch {
       addToast({ type: 'error', message: 'Erro ao encerrar sessao' });
     } finally {
       setSubmitting(false);

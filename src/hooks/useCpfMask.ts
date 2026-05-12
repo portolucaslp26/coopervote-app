@@ -1,11 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export function useCpfMask(initialValue = '') {
   const [value, setValue] = useState(initialValue);
-
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
 
   const formatCpf = (input: string): string => {
     const digits = input.replace(/\D/g, '').slice(0, 11);

@@ -35,8 +35,8 @@ describe('VotingPage', () => {
     vi.spyOn(sessionService, 'getById').mockResolvedValue({
       id: 1,
       agendaId: 1,
-      startTime: '2026-04-27T10:00:00',
-      endTime: '2026-04-28T11:00:00', // Future date
+      startTime: '2026-05-10T10:00:00',
+      endTime: '2026-05-20T11:00:00',
       isActive: true,
     });
     vi.spyOn(agendaService, 'getById').mockResolvedValue({
@@ -57,8 +57,8 @@ describe('VotingPage', () => {
     vi.spyOn(sessionService, 'getById').mockResolvedValue({
       id: 1,
       agendaId: 1,
-      startTime: '2026-04-27T10:00:00',
-      endTime: '2026-04-28T11:00:00', // Future date
+      startTime: '2026-05-10T10:00:00',
+      endTime: '2026-05-20T11:00:00',
       isActive: true,
     });
     vi.spyOn(agendaService, 'getById').mockResolvedValue({

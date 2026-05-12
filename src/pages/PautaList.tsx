@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, startTransition } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { agendaService } from '../services/agendaService';
@@ -16,10 +16,6 @@ export function PautaList() {
   const [searchTerm, setSearchTerm] = useState('');
   const { addToast } = useAppStore();
 
-  useEffect(() => {
-    loadAgendas();
-  }, []);
-
   const loadAgendas = async () => {
     try {
       const data = await agendaService.getAll();
@@ -33,13 +29,21 @@ export function PautaList() {
           }
         })
       );
-      setAgendas(agendasWithSessions);
-    } catch (error) {
+      startTransition(() => {
+        setAgendas(agendasWithSessions);
+      });
+    } catch {
       addToast({ type: 'error', message: 'Nao foi possivel carregar as pautas' });
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   };
+
+  useEffect(() => {
+    loadAgendas();
+  }, []);
 
   const getStatusBadge = (session?: VotingSession) => {
     if (!session) return { label: 'Pendente', class: 'bg-[#FEF3C7] text-[#B45309] border-[#FDE68A]' };

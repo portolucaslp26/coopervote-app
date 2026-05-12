@@ -3,16 +3,16 @@ import type { Agenda, VotingSession, VotingResult, CastVoteRequest } from '../ty
 
 export const baseUrl = 'http://localhost:8080/api/v1';
 
-let agendas: Agenda[] = [
+const agendas: Agenda[] = [
   { id: 1, title: 'Pauta Teste 1', description: 'Descricao 1', createdAt: '2026-04-27' },
   { id: 2, title: 'Pauta Teste 2', description: 'Descricao 2', createdAt: '2026-04-27' },
 ];
 
-let sessions: VotingSession[] = [
+const sessions: VotingSession[] = [
   { id: 1, agendaId: 1, startTime: '2026-04-27T10:00:00', endTime: '2026-04-27T11:00:00', isActive: true },
 ];
 
-let results: Map<number, VotingResult> = new Map();
+const results: Map<number, VotingResult> = new Map();
 results.set(1, {
   sessionId: 1,
   agendaId: 1,

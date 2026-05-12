@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, startTransition } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { agendaService } from '../services/agendaService';
@@ -15,10 +15,6 @@ export function Dashboard() {
   const [loading, setLoading] = useState(true);
   const { addToast } = useAppStore();
 
-  useEffect(() => {
-    loadData();
-  }, []);
-
   const loadData = async () => {
     try {
       const data = await agendaService.getAll();
@@ -32,13 +28,21 @@ export function Dashboard() {
           }
         })
       );
-      setAgendas(agendasWithSessions);
-    } catch (error) {
+      startTransition(() => {
+        setAgendas(agendasWithSessions);
+      });
+    } catch {
       addToast({ type: 'error', message: 'Nao foi possivel carregar os dados' });
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   };
+
+  useEffect(() => {
+    loadData();
+  }, []);
 
   const stats = [
     { label: 'Pautas Totais', value: agendas.length, icon: 'lucide:file-text', color: 'bg-[#0677F9]/10 text-[#0677F9]' },

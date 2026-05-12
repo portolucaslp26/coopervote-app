@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, startTransition } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { agendaService } from '../services/agendaService';
@@ -13,38 +13,44 @@ export function Results() {
   const [session, setSession] = useState<VotingSession | null>(null);
   const [result, setResult] = useState<VotingResult | null>(null);
   const [loading, setLoading] = useState(true);
+  const [agendasWithResults, setAgendasWithResults] = useState<{ agenda: Agenda; session?: VotingSession; result?: VotingResult }[]>([]);
   const { addToast } = useAppStore();
-
-  useEffect(() => {
-    if (id) loadData();
-    else loadAllResults();
-  }, [id]);
 
   const loadData = async () => {
     try {
       const sessionData = await sessionService.getById(Number(id));
-      setSession(sessionData);
+      startTransition(() => {
+        setSession(sessionData);
+      });
       
       const agendaData = await agendaService.getById(sessionData.agendaId);
-      setAgenda(agendaData);
+      startTransition(() => {
+        setAgenda(agendaData);
+      });
       
       try {
         const resultData = await voteService.getResult(sessionData.id);
-        setResult(resultData);
+        startTransition(() => {
+          setResult(resultData);
+        });
       } catch {
-        setResult({
-          sessionId: sessionData.id,
-          agendaId: sessionData.agendaId,
-          yesVotes: 0,
-          noVotes: 0,
-          totalVotes: 0,
-          result: 'DRAW',
+        startTransition(() => {
+          setResult({
+            sessionId: sessionData.id,
+            agendaId: sessionData.agendaId,
+            yesVotes: 0,
+            noVotes: 0,
+            totalVotes: 0,
+            result: 'DRAW',
+          });
         });
       }
-    } catch (error) {
+    } catch {
       addToast({ type: 'error', message: 'Nao foi possivel carregar os resultados' });
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   };
 
@@ -63,15 +69,22 @@ export function Results() {
         }
       }
       
-      setAgendasWithResults(resultsWithData);
-    } catch (error) {
+      startTransition(() => {
+        setAgendasWithResults(resultsWithData);
+      });
+    } catch {
       addToast({ type: 'error', message: 'Nao foi possivel carregar os resultados' });
     } finally {
-      setLoading(false);
+      startTransition(() => {
+        setLoading(false);
+      });
     }
   };
 
-  const [agendasWithResults, setAgendasWithResults] = useState<{ agenda: Agenda; session?: VotingSession; result?: VotingResult }[]>([]);
+  useEffect(() => {
+    if (id) loadData();
+    else loadAllResults();
+  }, [id]);
 
   if (loading) {
     return (
