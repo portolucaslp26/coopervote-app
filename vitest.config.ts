@@ -10,9 +10,10 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{js,ts,jsx,tsx}'],
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html'],
+      reporter: ['text', 'lcov'],
+      reportsDirectory: 'coverage',
       include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/**/*.test.{ts,tsx}', 'src/test/**', 'src/types/**'],
+      exclude: ['src/**/*.test.{ts,tsx}', 'src/test/**', 'src/types/**', 'e2e/**'],
     },
   },
 });
