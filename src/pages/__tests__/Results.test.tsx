@@ -94,4 +94,34 @@ describe('Results', () => {
       expect(screen.getByText('Empate')).toBeInTheDocument();
     });
   });
+
+  it('should show 0% for NAO when totalVotes is 0', async () => {
+    vi.spyOn(sessionService, 'getById').mockResolvedValue({
+      id: 1,
+      agendaId: 1,
+      startTime: '2026-04-27T10:00:00',
+      endTime: '2026-04-27T11:00:00',
+      isActive: false,
+    });
+    vi.spyOn(agendaService, 'getById').mockResolvedValue({
+      id: 1,
+      title: 'Pauta Teste',
+      description: 'Desc',
+      createdAt: '2026-04-27',
+    });
+    vi.spyOn(voteService, 'getResult').mockResolvedValue({
+      sessionId: 1,
+      agendaId: 1,
+      yesVotes: 0,
+      noVotes: 0,
+      totalVotes: 0,
+      result: 'DRAW',
+    });
+
+    renderWithRouter(<Results />);
+
+    await waitFor(() => {
+      expect(screen.getByText('Empate')).toBeInTheDocument();
+    });
+  });
 });
