@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -163,10 +163,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,8 +195,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -217,7 +217,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,16 +239,16 @@ interface SessionActionsProps {
   submitting: boolean;
 }
 &nbsp;
-export function SessionActions({
+export function <span class="fstat-no" title="function not covered" >SessionActions({</span>
   session,
   onOpenSession,
   onCloseSession,
   submitting,
 }: SessionActionsProps) {
-  const [duration, setDuration] = useState(1);
+  const [duration, <span class="cstat-no" title="statement not covered" >setDuration] = useState(1);</span>
 &nbsp;
-  if (!session) {
-    return (
+<span class="cstat-no" title="statement not covered" >  if (!session) {</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;div className="space-y-3"&gt;
         &lt;div className="flex items-center gap-2 text-xs text-[#91969C]"&gt;
           &lt;span&gt;Duracao:&lt;/span&gt;
@@ -277,8 +277,8 @@ export function SessionActions({
     );
   }
 &nbsp;
-  if (session.isActive) {
-    return (
+<span class="cstat-no" title="statement not covered" >  if (session.isActive) {</span>
+<span class="cstat-no" title="statement not covered" >    return (</span>
       &lt;div className="space-y-3"&gt;
         &lt;Link
           to={`/votacao/${session.id}`}
@@ -299,7 +299,7 @@ export function SessionActions({
     );
   }
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}&gt;
       &lt;Link
         to={`/pautas/${session.agendaId}`}
@@ -316,7 +316,7 @@ export function SessionActions({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-13T12:07:30.276Z
+                at 2026-05-13T13:18:46.586Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

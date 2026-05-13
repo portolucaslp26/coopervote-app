@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -129,7 +129,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -146,7 +146,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -157,7 +157,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,8 +185,8 @@ interface SidebarProps {
   onClose: () =&gt; void;
 }
 &nbsp;
-export function Sidebar({ isOpen, onClose }: SidebarProps) {
-  return (
+export function <span class="fstat-no" title="function not covered" >Sidebar({</span> isOpen, onClose }: SidebarProps) {
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;&gt;
       {isOpen &amp;&amp; (
         &lt;div 
@@ -203,9 +203,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           &lt;div className="space-y-2 flex-1 pt-16"&gt;
             &lt;NavLink 
               to="/"
-              className={({ isActive }) =&gt; `
+<span class="fstat-no" title="function not covered" >              className={({</span> isActive }) =&gt; <span class="cstat-no" title="statement not covered" >`</span>
                 flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium transition-colors
-                ${isActive ? 'bg-[#0677F9]/10 text-[#0677F9]' : <span class="branch-1 cbranch-no" title="branch not covered" >'text-[#91969C] hover:bg-gray-100'}</span>
+                ${isActive ? 'bg-[#0677F9]/10 text-[#0677F9]' : 'text-[#91969C] hover:bg-gray-100'}
               `}
               onClick={onClose}
             &gt;
@@ -214,9 +214,9 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             &lt;/NavLink&gt;
             &lt;NavLink 
               to="/pautas"
-              className={({ isActive }) =&gt; `
+<span class="fstat-no" title="function not covered" >              className={({</span> isActive }) =&gt; <span class="cstat-no" title="statement not covered" >`</span>
                 flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm font-medium transition-colors
-                ${isActive ? <span class="branch-0 cbranch-no" title="branch not covered" >'bg-[#0677F9]/10 text-[#0677F9]' : '</span>text-[#91969C] hover:bg-gray-100'}
+                ${isActive ? 'bg-[#0677F9]/10 text-[#0677F9]' : 'text-[#91969C] hover:bg-gray-100'}
               `}
               onClick={onClose}
             &gt;
@@ -241,7 +241,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-13T12:07:30.276Z
+                at 2026-05-13T13:18:46.586Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

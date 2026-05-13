@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/13</span>
+                <span class='fraction'>0/13</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/7</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -182,14 +182,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -197,15 +197,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -236,9 +236,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -251,7 +251,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,11 +264,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -290,30 +290,30 @@ interface ToastProps {
   onClose: (id: string) =&gt; void;
 }
 &nbsp;
-const icons = {
+const icons = <span class="cstat-no" title="statement not covered" >{</span>
   success: 'lucide:check-circle',
   error: 'lucide:x-circle',
   warning: 'lucide:alert-triangle',
   info: 'lucide:info',
 };
 &nbsp;
-const titleLabels = {
+const titleLabels = <span class="cstat-no" title="statement not covered" >{</span>
   success: 'Sucesso',
   error: 'Erro',
   warning: 'Aviso',
   info: 'Info',
 };
 &nbsp;
-export function Toast({ id, type, message, onClose }: ToastProps) {
-  useEffect(() =&gt; {
-    const timer = setTimeout(() =&gt; {
-      onClose(id);
+export function <span class="fstat-no" title="function not covered" >Toast({</span> id, type, message, onClose }: ToastProps) {
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  useEffect(() =&gt; {</span></span>
+    const timer = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >setTimeout(() =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >      onClose(id);</span>
     }, 4000);
 &nbsp;
-    return () =&gt; clearTimeout(timer);
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    return () =&gt; <span class="cstat-no" title="statement not covered" >c</span>learTimeout(timer);</span></span>
   }, [id, onClose]);
 &nbsp;
-  const styles = {
+  const styles = <span class="cstat-no" title="statement not covered" >{</span>
     success: {
       bg: 'bg-green-50 border-green-500',
       icon: 'text-green-600',
@@ -344,9 +344,9 @@ export function Toast({ id, type, message, onClose }: ToastProps) {
     },
   };
 &nbsp;
-  const s = styles[type];
+  const s = <span class="cstat-no" title="statement not covered" >styles[type];</span>
 &nbsp;
-  return (
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;motion.div
       initial={{ opacity: 0, x: 100, y: 0 }}
       animate={{ opacity: 1, x: 0, y: 0 }}
@@ -359,7 +359,7 @@ export function Toast({ id, type, message, onClose }: ToastProps) {
         &lt;p className={`text-sm font-bold ${s.title}`}&gt;{titleLabels[type]}&lt;/p&gt;
         &lt;p className={`text-xs mt-0.5 ${s.message}`}&gt;{message}&lt;/p&gt;
       &lt;/div&gt;
-      &lt;button onClick={() =&gt; onClose(id)} className={`text-xs hover:underline shrink-0 ${s.icon}`}&gt;
+      &lt;button <span class="fstat-no" title="function not covered" >onClick={() =&gt; <span class="cstat-no" title="statement not covered" >o</span>nClose(id)}</span> className={`text-xs hover:underline shrink-0 ${s.icon}`}&gt;
         Fechar
       &lt;/button&gt;
     &lt;/motion.div&gt;
@@ -371,12 +371,12 @@ interface ToastContainerProps {
   onClose: (id: string) =&gt; void;
 }
 &nbsp;
-export function ToastContainer({ toasts, onClose }: ToastContainerProps) {
-  return (
+export function <span class="fstat-no" title="function not covered" >ToastContainer({</span> toasts, onClose }: ToastContainerProps) {
+<span class="cstat-no" title="statement not covered" >  return (</span>
     &lt;div className="fixed top-4 right-4 z-[100] space-y-2"&gt;
       &lt;AnimatePresence mode="popLayout"&gt;
-        {toasts.map((toast) =&gt; (
-          &lt;Toast
+        {toasts.<span class="fstat-no" title="function not covered" >map((t</span>oast) =&gt; (
+<span class="cstat-no" title="statement not covered" >          &lt;Toast</span>
             key={toast.id}
             id={toast.id}
             type={toast.type}
@@ -394,7 +394,7 @@ export function ToastContainer({ toasts, onClose }: ToastContainerProps) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-13T12:07:30.276Z
+                at 2026-05-13T13:18:46.586Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

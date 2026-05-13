@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>2/12</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">9.09% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>11/11</span>
+                <span class='fraction'>1/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>1/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -125,28 +125,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { create } from 'zustand';
 import type { Agenda, VotingSession, Toast } from '../types';
 &nbsp;
@@ -175,20 +175,20 @@ export const useAppStore = create&lt;AppState&gt;((set) =&gt; ({
   isLoading: false,
   error: null,
 &nbsp;
-  setAgendas: (agendas) =&gt; set({ agendas }),
-  setCurrentAgenda: (agenda) =&gt; set({ currentAgenda: agenda }),
-  setCurrentSession: (session) =&gt; set({ currentSession: session }),
+<span class="fstat-no" title="function not covered" >  setAgendas: (a</span>gendas) =&gt; <span class="cstat-no" title="statement not covered" >set({ agendas }),</span>
+<span class="fstat-no" title="function not covered" >  setCurrentAgenda: (a</span>genda) =&gt; <span class="cstat-no" title="statement not covered" >set({ currentAgenda: agenda }),</span>
+<span class="fstat-no" title="function not covered" >  setCurrentSession: (s</span>ession) =&gt; <span class="cstat-no" title="statement not covered" >set({ currentSession: session }),</span>
   
-  addToast: (toast) =&gt; set((state) =&gt; ({
+<span class="fstat-no" title="function not covered" >  addToast: (t</span>oast) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >set((s</span>tate) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
     toasts: [...state.toasts, { ...toast, id: Date.now().toString() }]
   })),
   
-  removeToast: (id) =&gt; set((state) =&gt; ({
-    toasts: state.toasts.filter((t) =&gt; t.id !== id)
+<span class="fstat-no" title="function not covered" >  removeToast: (i</span>d) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >set((s</span>tate) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+    toasts: state.toasts.<span class="fstat-no" title="function not covered" >filter((t</span>) =&gt; <span class="cstat-no" title="statement not covered" >t.id !== id)</span>
   })),
   
-  setLoading: (isLoading) =&gt; set({ isLoading }),
-  setError: (error) =&gt; set({ error }),
+<span class="fstat-no" title="function not covered" >  setLoading: (i</span>sLoading) =&gt; <span class="cstat-no" title="statement not covered" >set({ isLoading }),</span>
+<span class="fstat-no" title="function not covered" >  setError: (e</span>rror) =&gt; <span class="cstat-no" title="statement not covered" >set({ error }),</span>
 }));</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -196,7 +196,7 @@ export const useAppStore = create&lt;AppState&gt;((set) =&gt; ({
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-13T12:07:30.276Z
+                at 2026-05-13T13:18:46.586Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

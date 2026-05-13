@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>1/9</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">11.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/9</span>
+                <span class='fraction'>1/9</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -89,48 +89,48 @@
 <a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { api } from './api';
 import type { VotingSession, OpenSessionRequest } from '../types';
 &nbsp;
 export const sessionService = {
-  open: async (agendaId: number, request: OpenSessionRequest): Promise&lt;VotingSession&gt; =&gt; {
-    const response = await api.post&lt;VotingSession&gt;(`/sessions/agenda/${agendaId}`, request);
-    return response.data;
+  open: <span class="fstat-no" title="function not covered" >async (a</span>gendaId: number, request: OpenSessionRequest): Promise&lt;VotingSession&gt; =&gt; {
+    const response = <span class="cstat-no" title="statement not covered" >await api.post&lt;VotingSession&gt;(`/sessions/agenda/${agendaId}`, request);</span>
+<span class="cstat-no" title="statement not covered" >    return response.data;</span>
   },
 &nbsp;
-  getById: async (id: number): Promise&lt;VotingSession&gt; =&gt; {
-    const response = await api.get&lt;VotingSession&gt;(`/sessions/${id}`);
-    return response.data;
+  getById: <span class="fstat-no" title="function not covered" >async (i</span>d: number): Promise&lt;VotingSession&gt; =&gt; {
+    const response = <span class="cstat-no" title="statement not covered" >await api.get&lt;VotingSession&gt;(`/sessions/${id}`);</span>
+<span class="cstat-no" title="statement not covered" >    return response.data;</span>
   },
 &nbsp;
-  getByAgendaId: async (agendaId: number): Promise&lt;VotingSession&gt; =&gt; {
-    const response = await api.get&lt;VotingSession&gt;(`/sessions/agenda/${agendaId}`);
-    return response.data;
+  getByAgendaId: <span class="fstat-no" title="function not covered" >async (a</span>gendaId: number): Promise&lt;VotingSession&gt; =&gt; {
+    const response = <span class="cstat-no" title="statement not covered" >await api.get&lt;VotingSession&gt;(`/sessions/agenda/${agendaId}`);</span>
+<span class="cstat-no" title="statement not covered" >    return response.data;</span>
   },
 &nbsp;
-  close: async (id: number): Promise&lt;VotingSession&gt; =&gt; {
-    const response = await api.post&lt;VotingSession&gt;(`/sessions/${id}/close`, {});
-    return response.data;
+  close: <span class="fstat-no" title="function not covered" >async (i</span>d: number): Promise&lt;VotingSession&gt; =&gt; {
+    const response = <span class="cstat-no" title="statement not covered" >await api.post&lt;VotingSession&gt;(`/sessions/${id}/close`, {});</span>
+<span class="cstat-no" title="statement not covered" >    return response.data;</span>
   },
 };</pre></td></tr></table></pre>
 
@@ -139,7 +139,7 @@ export const sessionService = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-13T12:07:30.276Z
+                at 2026-05-13T13:18:46.586Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

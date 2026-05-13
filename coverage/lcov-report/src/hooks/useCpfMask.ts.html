@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.23% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.88% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>8/9</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/17</span>
+                <span class='fraction'>0/17</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -102,33 +102,33 @@
 <a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -137,34 +137,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react';
 &nbsp;
-export function useCpfMask(initialValue = '') {
-  const [value, setValue] = useState(initialValue);
+export function <span class="fstat-no" title="function not covered" >useCpfMask(i</span>nitialValue = <span class="branch-0 cbranch-no" title="branch not covered" >'') {</span>
+  const [value, <span class="cstat-no" title="statement not covered" >setValue] = useState(initialValue);</span>
 &nbsp;
-  const formatCpf = (input: string): string =&gt; {
-    const digits = input.replace(/\D/g, '').slice(0, 11);
+  const <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >formatCpf = (i</span>nput: string): string =&gt; {</span>
+    const digits = <span class="cstat-no" title="statement not covered" >input.replace(/\D/g, '').slice(0, 11);</span>
     
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (digits.length === 0) <span class="cstat-no" title="statement not covered" >return '';</span>
-    if (digits.length &lt;= 3) return digits;
-    if (digits.length &lt;= 6) return `${digits.slice(0, 3)}.${digits.slice(3)}`;
-    if (digits.length &lt;= 9) return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;
-    return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`;
+<span class="cstat-no" title="statement not covered" >    if (digits.length === 0) <span class="cstat-no" title="statement not covered" >return '';</span></span>
+<span class="cstat-no" title="statement not covered" >    if (digits.length &lt;= 3) <span class="cstat-no" title="statement not covered" >return digits;</span></span>
+<span class="cstat-no" title="statement not covered" >    if (digits.length &lt;= 6) <span class="cstat-no" title="statement not covered" >return `${digits.slice(0, 3)}.${digits.slice(3)}`;</span></span>
+<span class="cstat-no" title="statement not covered" >    if (digits.length &lt;= 9) <span class="cstat-no" title="statement not covered" >return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6)}`;</span></span>
+<span class="cstat-no" title="statement not covered" >    return `${digits.slice(0, 3)}.${digits.slice(3, 6)}.${digits.slice(6, 9)}-${digits.slice(9)}`;</span>
   };
 &nbsp;
-  const handleChange = (e: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {
-    const formatted = formatCpf(e.target.value);
-    setValue(formatted);
+  const <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >handleChange = (e</span>: React.ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {</span>
+    const formatted = <span class="cstat-no" title="statement not covered" >formatCpf(e.target.value);</span>
+<span class="cstat-no" title="statement not covered" >    setValue(formatted);</span>
   };
 &nbsp;
-  const getDigits = (): string =&gt; {
-    return value.replace(/\D/g, '');
+  const <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >getDigits = (): string =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >    return value.replace(/\D/g, '');</span>
   };
 &nbsp;
-  const isValid = (): boolean =&gt; {
-    const digits = getDigits();
-    return digits.length === 11;
+  const <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >isValid = (): boolean =&gt; {</span></span>
+    const digits = <span class="cstat-no" title="statement not covered" >getDigits();</span>
+<span class="cstat-no" title="statement not covered" >    return digits.length === 11;</span>
   };
 &nbsp;
-  return {
+<span class="cstat-no" title="statement not covered" >  return {</span>
     value,
     handleChange,
     getDigits,
@@ -178,7 +178,7 @@ export function useCpfMask(initialValue = '') {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-05-13T12:07:30.276Z
+                at 2026-05-13T13:18:46.586Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
